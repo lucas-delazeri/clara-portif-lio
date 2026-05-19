@@ -8,7 +8,7 @@
   --salmon:     #d9745a;
   --salmon-lt:  #e8967e;
   --dusty:      #9aaba8;
-  --text:       #3d2b26;
+  --text:       #3d2b26c2;
   --muted:      #b0887a;
   --line:       #ead9d3;
   --white:      #ffffff;
@@ -187,16 +187,21 @@ nav a.active { color: var(--salmon); }
 }
 
 /* SOBRE */
+/* SOBRE */
 #sobre {
-  padding: 7rem 3.5rem;
+  padding: 8rem 3.5rem;
   background: var(--white);
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 5rem;
-  align-items: center;
+  grid-template-columns: 1fr 1.5fr; /* Dá um pouco mais de espaço para a coluna de texto */
+  gap: 6rem;
+  align-items: start; /* Alinha o topo da foto com o topo do texto */
 }
 
-.about-img-wrap { position: relative; }
+.about-img-wrap { 
+  position: relative; 
+  position: sticky; /* Faz a foto acompanhar sutilmente a rolagem do texto longo */
+  top: 100px;
+}
 
 .about-img-box {
   width: 100%; padding-top: 120%;
@@ -205,24 +210,6 @@ nav a.active { color: var(--salmon); }
   position: relative;
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-}
-
-.about-initials {
-  font-family: var(--serif);
-  font-size: 7rem;
-  font-style: italic;
-  color: rgba(217,116,90,0.2);
-  user-select: none;
-  position: absolute;
-}
-
-.about-img-caption {
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 1rem;
 }
 
 .about-blob-deco {
@@ -248,7 +235,7 @@ nav a.active { color: var(--salmon); }
 
 .about-title {
   font-family: var(--serif);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
   font-weight: 700;
   line-height: 1.2;
   color: var(--text);
@@ -257,37 +244,72 @@ nav a.active { color: var(--salmon); }
 
 .about-title em { font-style: italic; color: var(--salmon); }
 
+/* Frase de boas-vindas igual à da imagem */
+.about-welcome {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+/* Alterado para dar o efeito "aberto" e fluido da imagem */
 .about-body {
-  font-size: 0.97rem;
+  font-size: 0.98rem;
   font-weight: 300;
   color: var(--muted);
+  margin-bottom: 1.5rem;
+  max-width: 100%; /* Removeu os 50ch para o texto espalhar horizontalmente */
+  line-height: 1.8; /* Linhas mais espaçadas para leitura leve */
+  text-align: justify;
+}
+
+/* Estilização do Currículo em formato de lista limpa */
+.about-resume-section {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.resume-toggle-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--salmon);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1.2rem;
-  max-width: 50ch;
+  font-weight: 400;
 }
 
-.skills-grid {
-  display: flex; flex-wrap: wrap; gap: 0.6rem;
-  margin-top: 2rem;
+.resume-toggle-title .arrow-icon {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--salmon);
 }
 
-.skill-pill {
-  padding: 0.4rem 1.1rem;
-  background: var(--bg2);
-  border-radius: 50px;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--text);
-  border: 1px solid var(--line);
-  transition: background 0.25s, border-color 0.25s, color 0.25s;
+.resume-list {
+  list-style: none;
+  padding: 0;
 }
 
-.skill-pill:hover {
-  background: var(--salmon);
-  border-color: var(--salmon);
-  color: #fff;
+.resume-list li {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.2rem;
 }
 
+/* Marcador de bolinha salmão idêntico ao da imagem */
+.resume-list li::before {
+  content: "•";
+  color: var(--salmon);
+  font-size: 1.2rem;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
 /* PROJETOS */
 #projetos {
   padding: 7rem 3.5rem;
@@ -389,43 +411,134 @@ nav a.active { color: var(--salmon); }
   transition: gap 0.2s;
 }
 
+.image-clara {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img-whats {
+  width: 20px;
+}
+
 .project-link:hover { gap: 0.7rem; }
 .project-link::after { content: '→'; }
 
+.hero-cta a {
+  text-decoration: none;
+  color: white;
+}
+
 /* CONTATO */
 #contato {
-  padding: 7rem 3.5rem;
-  background: var(--white);
+  padding: 8rem 3.5rem;
+  background: var(--bg2); /* Corrigido o bug do var() anterior */
+  border-top: 1px solid var(--line);
 }
 
 .contact-inner {
-  max-width: 760px;
+  max-width: 700px;
   margin: 0 auto;
   text-align: center;
 }
 
 .contact-title {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  color: var(--text);
 }
 
-.contact-title em { font-style: italic; color: var(--salmon); }
+.contact-title em { 
+  font-style: italic; 
+  color: var(--salmon); 
+  font-weight: 700;
+}
 
 .contact-sub {
-  font-size: 0.97rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--muted);
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  line-height: 1.6;
 }
 
-.contact-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  text-align: left;
+/* NOVO BOTÃO DE CTA DE CONTATO */
+.contact-cta-wrapper {
+  margin-bottom: 4rem;
+}
+
+.contact-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.1rem 2rem;
+  background: var(--salmon);
+  border-radius: 50px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(217,116,90,0.3);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.contact-cta-btn:hover {
+  background: var(--salmon-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(217,116,90,0.4);
+}
+
+.img-whats-btn {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1); /* Deixa o ícone do whats branco para combinar com o texto */
+}
+
+/* LINKS SECUNDÁRIOS */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.contact-link:hover {
+  color: var(--salmon);
+  transform: translateY(-1px);
+}
+
+.contact-link-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--salmon);
+  opacity: 0.6;
+  transition: transform 0.3s;
+}
+
+.contact-link:hover .contact-link-dot {
+  transform: scale(1.4);
 }
 
 .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -480,29 +593,6 @@ nav a.active { color: var(--salmon); }
   transform: translateY(-2px);
 }
 
-.contact-links {
-  display: flex; justify-content: center; gap: 2rem;
-  margin-top: 3rem;
-  flex-wrap: wrap;
-}
-
-.contact-link {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.contact-link:hover { color: var(--salmon); }
-
-.contact-link-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--salmon);
-  opacity: 0.5;
-}
 
 /* FOOTER */
 footer {
@@ -610,4 +700,31 @@ footer {
   .form-group.full { grid-column: 1; }
   footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   .dot-nav { display: none; }
+}
+
+.contact-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.form-submit-link {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: var(--salmon);
+  border-radius: 50px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(217,116,90,0.35);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-submit-link:hover {
+  background: var(--salmon-lt);
+  transform: translateY(-2px);
 }
